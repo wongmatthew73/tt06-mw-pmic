@@ -22,9 +22,11 @@ After the ADC is read, the duel pwms' duty cycles are updated. 0 is the min volt
 phase and should never overlap. Otherwise this could lead to shoot-thru which could destroy the FETs. A dead zone was built into the state machine 
 to prevent this overlap.
 
-## How to test
+## How to use
 
-Explain how to use your project
+After reset, the syncRectifierLs and syncRectifierHs outputs will produce a pwm signal based on the 8bit parallel ADC input.
+You need to build the circuit shown in the white paper pdf. See the "doc_link" section below. You could also just hook up an oscilloscope to 
+the syncRectifierLs and syncRectifierHs and see the 180 deg out of phase square waves.
 
 ## External hardware
 
