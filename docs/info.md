@@ -30,4 +30,5 @@ the syncRectifierLs and syncRectifierHs and see the 180 deg out of phase square 
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+https://www.analog.com/media/en/technical-documentation/data-sheets/ad7819.pdf
+https://www.digikey.com/en/htmldatasheets/production/638815/0/0/1/mcp14700
