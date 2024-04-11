@@ -2,13 +2,17 @@
 
 module slow_clk(
     input original_clk,
+    input reset,
     output slow_clk
     );
     
     parameter CLOCKCOUNT = 2;
-    reg [36:0] counter = 36'b0;
+    reg [36:0] counter;
 
     always @(posedge original_clk) begin
+        if(reset)
+            counter <= 0;
+        else
         if(counter >= CLOCKCOUNT) begin
             counter <= 0;
         end

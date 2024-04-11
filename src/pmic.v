@@ -16,6 +16,7 @@ module pmic(
     
     slow_clk slowClk(
     	.original_clk(clk), 
+    	.reset(reset), 
     	.slow_clk(slowerClk)
     	);
     pwm syncPWM(
