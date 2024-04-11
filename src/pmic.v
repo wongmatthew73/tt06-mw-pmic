@@ -14,12 +14,12 @@ module pmic(
     
     wire slowerClk;
     
-    slow_clk slowClk(
-    	.original_clk(clk), 
-    	.slow_clk(slowerClk)
-    	);
+   // slow_clk slowClk(
+    	//.original_clk(clk), 
+    //	.slow_clk(slowerClk)
+    //	);
     pwm syncPWM(
-    	.clk(slowerClk), 
+    	.clk(clk), 
     	.reset(reset), 
     	//.enable(enable), 
     	.busy(busy), 
