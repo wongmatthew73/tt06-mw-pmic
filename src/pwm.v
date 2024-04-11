@@ -59,7 +59,7 @@ module pwm(
     assign pwmLow = dutyMaxTime - pwmHigh;
     
     //Heartbeat periodically pings ADC and requests adc conversion.
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if(reset == 1) begin // || enable == 0) begin
             adcStart <= 0;
             adcHeartBeatCounter <= 0;
@@ -83,7 +83,7 @@ module pwm(
     end
     
     //State machine for adc conversion process. Refer to ADC datasheet for more details. I believe I'm using mode 2.
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if(reset == 1) begin // || enable == 0) begin
             convStartTrig <= 0;
             rd_cs_trig <= 1;
@@ -154,7 +154,7 @@ module pwm(
     
     //Keep the pwm high and low duty cycles within 256 cycles. Otherwise they would cross the deadzone limit and maybe cause shoot-thru to occur
     //potentially damaging FETs.
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if(reset == 1) begin // || enable == 0) begin
             pwmHigh <= 3; 
         end
@@ -183,7 +183,7 @@ module pwm(
     end
       
     //Counter for duty cycle and deadzone.
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if(reset == 1) begin // || enable == 0) begin
             counterFlag <= 0;
             counter <= 0;
@@ -235,7 +235,7 @@ module pwm(
     
     //Synchronous Rectifier state machine. Doesn't matter which signal you use for the high side and low-side FETs. 
     //But the high-side FET input should be handled externally with a high-side driver. I'm using MCP14700
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if(reset == 1) begin // || enable == 0) begin
             syncRectifierReg[0] <= 0;
             syncRectifierReg[1] <= 0;

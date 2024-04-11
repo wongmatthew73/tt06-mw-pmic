@@ -5,7 +5,6 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, with_timeout
 import random
-from encoder import Encoder
 
 #Look into this number
 clocks_per_phase = 10
