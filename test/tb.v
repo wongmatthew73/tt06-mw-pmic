@@ -40,8 +40,6 @@ module tb ();
 `endif
 
       .ui_in  (adcVoltage),    // Dedicated inputs
-      //.ui_in  ({2'b0, enc2_b, enc2_a, enc1_b, enc1_a, enc0_b, enc0_a}),    // Dedicated inputs
-      //.uo_out ({5'b0, pwm2_out, pwm1_out, pwm0_out}),   // Dedicated outputs (could not write as array)
       .uo_out (uo_out),   // Dedicated outputs (could not write as array)
       .uio_in ({7'b0, busy}),   // IOs: Input path
       .uio_out(uio_out),  // IOs: Output path
