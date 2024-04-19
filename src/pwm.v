@@ -8,7 +8,6 @@ module pwm(
     input [7:0] adcVoltage,
     output convStart,
     output rd_cs,
-    //output [1:0] syncRegOut
     output syncRegOutLs,
     output syncRegOutHs
     );
@@ -16,15 +15,10 @@ module pwm(
     parameter [7:0] dutyMaxTime = 256;
     parameter [7:0] pwmDeadzone = 5;
     parameter [4:0] conversionTime = 10;
-    parameter [4:0] convBusyLullTime = 10;
-    parameter [4:0] rd_sc_time = 20;
     parameter [36:0] adcHeartBeatTime = 1024;
     
     wire [7:0] pwmLow;
     reg [7:0] pwmHigh;
-    wire [7:0] pwmLowWithDead;
-    wire [7:0] duty;
-    wire [7:0] desiredPWM;
     wire [7:0] dutyCalcFromADC;
     
     //If countermode is 00, no change.
@@ -33,21 +27,17 @@ module pwm(
     //If countermode is 11, deadzone count
     reg [1:0] counterMode;
     reg counterFlag;
-    reg [36:0] counter;
-    reg [7:0] dutyCount;
-    reg [7:0] dutyReg;
+    reg [8:0] counter;
 
     reg [2:0] nextSyncState;
     reg [2:0] syncState;
     reg [1:0] syncRectifierReg;
     
     reg [2:0] adcReadState;
-    reg [2:0] nextAdcReadState;
     reg convStartTrig;
     reg rd_cs_trig;
-    reg [7:0] adcCounter;
+    reg [5:0] adcCounter;
     reg [36:0] adcHeartBeatCounter;
-    reg [1:0] adcMode;
     reg [7:0] adcVoltageRegister;
     reg adcStart;
     
